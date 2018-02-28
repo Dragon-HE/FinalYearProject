@@ -1,6 +1,7 @@
 # FinalYearProject
 
 28th Feb, 2018 update
+
 1.training set and test set are provided. To run the code, go to prodiction.py, modify the train_path, test_path 
 to where you put the training and test set. prediction_path is the place where you store the result, a csv file, you can also change it.
 
