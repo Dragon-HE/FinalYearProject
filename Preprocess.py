@@ -7,8 +7,6 @@ from Plot import plot_histogram
 数据需要做均值归一话，
 （数值-均值）/（最大值-最小值）
 """
-showColumn = 'var15'
-title1 = "Distribution of feature " + showColumn
 
 
 def read_csv(file_path):  # CsvUtils.py里也有一个read_csv()
@@ -16,14 +14,14 @@ def read_csv(file_path):  # CsvUtils.py里也有一个read_csv()
     return data
 
 
-def mean_normalization_formula(data_list, column_mean, column_max, column_min):
+def mean_normalization_formula(data_list, column_mean, column_max, column_min):  # 可以合并
     data_list = (data_list - column_mean) / (column_max - column_min)
     return data_list
 
 
-def mean_normalization(data_frame):
+def mean_normalization_for_data_set(data_frame):
     columns = data_frame.columns.values
-    print("after", data_frame['var38'].max())
+
     for index in range(len(columns)):
         # print column
         # print index
@@ -77,7 +75,7 @@ def remove_duplicate_feature(data):
     return data
 
 
-def renameFeatures(data):
+def rename_features(data):
     """
     Now rename the remaining features. use X_i to denote the ith feature
     :param data: 待处理的数据集
@@ -126,7 +124,7 @@ def process_train_set(train_path, selected_features):
     # plotRight(train_data, showColumn, title1)
 
     df = pd.DataFrame(train_data)
-    df = mean_normalization(df)
+    df = mean_normalization_for_data_set(df)
     # print df
     selected_train_data = np.array(df[selected_features])
     train_label = np.array(df[list(df.columns.values)[-1]])
@@ -148,7 +146,7 @@ def process_test_set(test_path, selected_features):
     test_data = remove_duplicate_feature(test_data)
 
     df = pd.DataFrame(test_data)
-    df = mean_normalization(df)
+    df = mean_normalization_for_data_set(df)
     selected_test_data = np.array(df[selected_features])
     test_id = np.array(df[list(df.columns.values)[0:1]])
 

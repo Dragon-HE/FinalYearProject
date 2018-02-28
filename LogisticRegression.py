@@ -88,7 +88,7 @@ def predict(test_data, theta):
     return prediction_result_y
 
 
-def mean_normalization(input_data):
+def mean_normalization(input_data):  # 有两个mean normalization
     input_data = (input_data - np.mean(input_data)) / (np.max(input_data) - np.min(input_data))
     return input_data
 
@@ -100,4 +100,3 @@ def sigmoid(z):
     :return: a value between 0 to 1
     """
     return 1.0 / (1 + np.exp(-z))
-
